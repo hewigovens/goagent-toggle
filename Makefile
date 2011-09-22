@@ -53,12 +53,10 @@ clean:
 		rm -f *.o $(dylib_obj)
 
 install:	all
-		cp $(dylib_obj) /Library/MobileSubstrate/DynamicLibraries/
-		respring
+		cp $(dylib_obj) /User/Library/SBSettings/Toggles/Goagent/
 
 uninstall:
-		rm -f /Library/MobileSubstrate/DynamicLibraries/$(dylib_obj)
-		respring
+		rm -f /User/Library/SBSettings/Toggles/Goagent/$(dylib_obj)
 
 .PHONY: all install uninstall clean
 
