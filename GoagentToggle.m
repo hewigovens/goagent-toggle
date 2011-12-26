@@ -4,19 +4,21 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <notify.h>
-
-static BOOL isRunning;
+#include <sys/types.h>
+#include <sys/stat.h>
 
 BOOL isCapable()
 {
-	//detect 3g
 	return YES;
 }
 
 // This runs when iPhone springboard resets. This is on boot or respring.
 BOOL isEnabled()
 {
-	return isRunning;
+	struct stat st;
+	if(stat("/tmp/goagent.pid",&st)==0)
+	    return TRUE;
+	else return FALSE;
 }
 
 // This function is optional and should only be used if it is likely for the toggle to become out of sync
@@ -33,12 +35,10 @@ void setState(BOOL Enable)
 	if (Enable == YES) 
 	{
 		notify_post("com.goagent.enable");
-		isRunning = TRUE;
 	}
 	else if (Enable == NO) 
 	{
 		notify_post("com.goagent.disable");
-		isRunning = FALSE;
 	}
 }
 
