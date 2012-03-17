@@ -1,0 +1,4 @@
+#!/bin/sh
+#ps -ef | grep python | grep -v grep | tr -s " " | cut -d" " -f3 | xargs kill -9
+killall python
+rm -rf /tmp/goagent.pid

@@ -1,0 +1,3 @@
+#!/bin/sh
+python /var/mobile/goagent-local/proxy.py &
+touch /tmp/goagent.pid
